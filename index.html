@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluência em Inglês Sem Travar Lendo Histórias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       EDITAR AQUI: cores e fontes
+    ============================================================ */
+    :root {
+      --bg:             #FFFDF5;
+      --fg:             #1E293B;
+      --muted:          #F1F5F9;
+      --muted-fg:       #64748B;
+      --accent:         #8B5CF6;
+      --accent-fg:      #FFFFFF;
+      --secondary:      #F472B6;
+      --tertiary:       #FBBF24;
+      --quaternary:     #34D399;
+      --border:         #E2E8F0;
+      --card:           #FFFFFF;
+      --shadow:         4px 4px 0px #1E293B;
+      --shadow-hover:   6px 6px 0px #1E293B;
+      --shadow-active:  2px 2px 0px #1E293B;
+      --radius-sm:      8px;
+      --radius-md:      16px;
+      --radius-lg:      24px;
+      --radius-full:    9999px;
+      --font-heading:   'Outfit', system-ui, sans-serif;
+      --font-body:      'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    /* ============================================================ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ---- Utilities ---- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .section    { padding: 96px 0; position: relative; overflow: hidden; }
+    .section-alt { background: var(--muted); }
+
+    h1,h2,h3,h4 { font-family: var(--font-heading); line-height: 1.2; }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: var(--tertiary);
+      color: var(--fg);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-full);
+      padding: 4px 14px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-full);
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: all .3s cubic-bezier(.34,1.56,.64,1);
+      position: relative;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-fg);
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover {
+      transform: translate(-2px,-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .btn-primary:active {
+      transform: translate(2px,2px);
+      box-shadow: var(--shadow-active);
+    }
+    .btn-lg { font-size: 1.15rem; padding: 18px 42px; }
+    .btn-arrow::after {
+      content: '→';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,.25);
+      border-radius: 50%;
+      font-size: 1rem;
+    }
+
+    /* ---- Trust bar below CTA ---- */
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--muted-fg);
+    }
+    .trust span { display: flex; align-items: center; gap: 6px; }
+    .trust .dot { color: var(--quaternary); font-size: 1.1rem; }
+
+    /* ---- Section headline ---- */
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted-fg);
+      max-width: 600px;
+    }
+    .centered { text-align: center; }
+    .centered .section-sub { margin: 0 auto; }
+
+    /* ========== STICKY HEADER ========== */
+    #site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,253,245,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    #site-header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--fg);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-logo-icon {
+      background: var(--accent);
+      color: #fff;
+      width: 32px; height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      border: 2px solid var(--fg);
+      box-shadow: 2px 2px 0 var(--fg);
+      flex-shrink: 0;
+    }
+
+    /* ========== HERO ========== */
+    #hero {
+      padding-top: 140px;
+      padding-bottom: 80px;
+      position: relative;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-eyebrow { margin-bottom: 8px; }
+    .hero-h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-h1 .highlight {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 10px;
+      background: var(--tertiary);
+      border-radius: 4px;
+      z-index: -1;
+      opacity: .7;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted-fg);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .book-card {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      box-shadow: 10px 10px 0 var(--fg);
+      padding: 0;
+      width: 300px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .book-levels {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .level-pill {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .7rem;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--fg);
+    }
+    .hero-deco-circle {
+      position: absolute;
+      width: 280px; height: 280px;
+      background: var(--tertiary);
+      border-radius: 50%;
+      opacity: .3;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 1;
+    }
+    /* Floating confetti */
+    .confetti {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* ========== PROBLEM ========== */
+    .problem-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 32px 0;
+    }
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      font-size: 1rem;
+      transition: transform .3s ease;
+    }
+    .problem-list li:hover { transform: translate(-2px,-2px); }
+    .problem-transition {
+      background: var(--accent);
+      color: #fff;
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      font-size: 1rem;
+      line-height: 1.7;
+      box-shadow: var(--shadow);
+    }
+
+    /* ========== SOLUTION CARDS ========== */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .diff-card {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      transition: all .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .diff-card:hover { transform: translate(-2px,-2px) rotate(-1deg); box-shadow: var(--shadow-hover); }
+    .diff-card-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      box-shadow: 3px 3px 0 var(--fg);
+    }
+    .diff-card:nth-child(1) .diff-card-icon { background: var(--accent); }
+    .diff-card:nth-child(2) .diff-card-icon { background: var(--secondary); }
+    .diff-card:nth-child(3) .diff-card-icon { background: var(--tertiary); }
+    .diff-card:nth-child(4) .diff-card-icon { background: var(--quaternary); }
+    .diff-card:nth-child(5) .diff-card-icon { background: var(--accent); }
+    .diff-card:nth-child(6) .diff-card-icon { background: var(--secondary); }
+    .diff-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .diff-card p { font-size: .9rem; color: var(--muted-fg); }
+
+    /* ========== LEVELS / ACCORDION ========== */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .level-card {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .level-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hover); }
+    .level-card-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 2px solid var(--fg);
+    }
+    .level-badge {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: .8rem;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--fg);
+      white-space: nowrap;
+    }
+    .level-card:nth-child(1) .level-card-header { background: #ede9fe; }
+    .level-card:nth-child(1) .level-badge { background: var(--accent); color: #fff; }
+    .level-card:nth-child(2) .level-card-header { background: #fce7f3; }
+    .level-card:nth-child(2) .level-badge { background: var(--secondary); color: #fff; }
+    .level-card:nth-child(3) .level-card-header { background: #fef3c7; }
+    .level-card:nth-child(3) .level-badge { background: var(--tertiary); color: var(--fg); }
+    .level-card:nth-child(4) .level-card-header { background: #d1fae5; }
+    .level-card:nth-child(4) .level-badge { background: var(--quaternary); color: var(--fg); }
+    .level-card:nth-child(5) .level-card-header { background: #ede9fe; }
+    .level-card:nth-child(5) .level-badge { background: var(--accent); color: #fff; }
+    .level-card:nth-child(6) .level-card-header { background: #fce7f3; }
+    .level-card:nth-child(6) .level-badge { background: var(--secondary); color: #fff; }
+    .level-card-title { font-weight: 800; font-size: 1rem; }
+    .level-card-stories { font-size: .8rem; color: var(--muted-fg); }
+    .level-card-body { padding: 20px 24px; font-size: .95rem; color: var(--muted-fg); }
+
+    /* ========== FOR WHO ========== */
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .who-box {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .who-box h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .who-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .who-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .95rem; }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      transition: all .3s cubic-bezier(.34,1.56,.64,1);
+      position: relative;
+    }
+    .testimonial-card:nth-child(2) { box-shadow: 8px 8px 0 var(--secondary); }
+    .testimonial-card:hover { transform: translate(-2px,-2px) rotate(-.5deg); }
+    .testimonial-quote {
+      font-size: 3rem;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .testimonial-text {
+      font-size: .95rem;
+      color: var(--fg);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: .9rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-card:nth-child(1) .testimonial-avatar { background: var(--accent); }
+    .testimonial-card:nth-child(2) .testimonial-avatar { background: var(--secondary); }
+    .testimonial-card:nth-child(3) .testimonial-avatar { background: var(--quaternary); }
+    .testimonial-name { font-weight: 700; font-size: .9rem; }
+    .testimonial-info { font-size: .8rem; color: var(--muted-fg); }
+    .stars { color: var(--tertiary); font-size: .9rem; margin-bottom: 12px; }
+
+    /* ========== PRICING ========== */
+    .pricing-card {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      box-shadow: 10px 10px 0 var(--fg);
+      max-width: 560px;
+      margin: 40px auto 0;
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -18px; right: 32px;
+      background: var(--tertiary);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-full);
+      padding: 6px 18px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .8rem;
+      box-shadow: 3px 3px 0 var(--fg);
+      transform: rotate(2deg);
+    }
+    .price-was {
+      font-size: 1rem;
+      color: var(--muted-fg);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .price-now {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 3.5rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-desc { font-size: .9rem; color: var(--muted-fg); margin-bottom: 28px; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .95rem;
+    }
+    .checklist li .check-icon {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--quaternary);
+      border: 2px solid var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+    .secure-badge {
+      text-align: center;
+      font-size: .85rem;
+      color: var(--muted-fg);
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ========== GUARANTEE ========== */
+    .guarantee-box {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      max-width: 700px;
+      margin: 40px auto 0;
+    }
+    .guarantee-icon {
+      font-size: 4rem;
+      flex-shrink: 0;
+    }
+    .guarantee-box h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    /* ========== FAQ ========== */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .faq-item {
+      background: var(--card);
+      border: 2px solid var(--fg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--fg);
+      cursor: pointer;
+      text-align: left;
+    }
+    .faq-q .faq-arrow {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--muted);
+      border: 2px solid var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem;
+      transition: transform .3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--accent); color: #fff; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .3s ease;
+      font-size: .95rem;
+      color: var(--muted-fg);
+      padding: 0 22px;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 22px 18px; }
+
+    /* ========== FINAL CTA ========== */
+    #final-cta {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 96px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    #final-cta h2 { color: #fff; font-size: clamp(1.8rem,4vw,2.8rem); margin-bottom: 16px; }
+    #final-cta p { font-size: 1.05rem; color: rgba(255,255,255,.82); max-width: 560px; margin: 0 auto 36px; }
+    .btn-final {
+      background: var(--tertiary);
+      color: var(--fg);
+      border-color: var(--fg);
+      box-shadow: var(--shadow);
+    }
+    .btn-final:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hover); }
+    .final-trust { color: rgba(255,255,255,.75); margin-top: 16px; }
+    /* Deco circles inside final cta */
+    .cta-deco {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .15;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--fg);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 24px;
+      font-size: .85rem;
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn-primary:hover, .diff-card:hover, .level-card:hover { transform: none; }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; }
+      .book-card { width: 260px; }
+      .who-grid { grid-template-columns: 1fr; }
+      .guarantee-box { flex-direction: column; gap: 16px; }
+      .pricing-card { padding: 40px 24px; }
+      .header-logo-text { display: none; }
+    }
+    @media (max-width: 480px) {
+      .btn-lg { font-size: 1rem; padding: 16px 28px; }
+      .price-now { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     STICKY HEADER
+============================================================ -->
+<header id="site-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="header-logo-icon">FE</span>
+      <span class="header-logo-text">Fluência em Inglês</span>
+    </div>
+    <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-arrow" target="_blank" rel="noopener">
+      Comprar — R$&nbsp;97
+    </a>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero">
+  <!-- Decorative confetti shapes -->
+  <div class="confetti" style="top:120px;left:4%;width:40px;height:40px;background:var(--secondary);border-radius:8px;border:2px solid var(--fg);transform:rotate(20deg);opacity:.5;"></div>
+  <div class="confetti" style="top:200px;left:8%;width:18px;height:18px;background:var(--tertiary);border-radius:50%;opacity:.6;"></div>
+  <div class="confetti" style="bottom:80px;right:5%;width:50px;height:50px;background:var(--quaternary);border-radius:50%;border:2px solid var(--fg);opacity:.4;"></div>
+  <div class="confetti" style="top:140px;right:10%;width:22px;height:22px;background:var(--accent);border-radius:4px;transform:rotate(45deg);opacity:.4;"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text reveal">
+        <div class="hero-eyebrow">
+          <!-- EDITAR: tag/eyebrow do hero -->
+          <span class="tag">200 Histórias • 6 Níveis • A1 ao C2</span>
+        </div>
+        <h1 class="hero-h1">
+          Você estuda inglês há anos… mas ainda <span class="highlight">trava</span> na hora de ler ou entender?
+        </h1>
+        <p class="hero-sub">
+          Descubra o método que treina seu cérebro para pensar em inglês — através de 200 histórias progressivas, do zero à fluência.
+        </p>
+        <!-- EDITAR: link do botão CTA -->
+        <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener">
+          QUERO MINHA CÓPIA AGORA — R$&nbsp;97
+        </a>
+        <div class="trust">
+          <span><span class="dot">✔</span> Acesso imediato</span>
+          <span><span class="dot">✔</span> Funciona em qualquer dispositivo</span>
+          <span><span class="dot">✔</span> Garantia de 7 dias</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="hero-deco-circle"></div>
+        <div class="book-card">
+          <img src="e0fa9595-0802-4754-bdc7-f467d771364c.png" alt="Capa do ebook Fluência em Inglês Sem Travar Lendo Histórias" style="width:100%;display:block;border-radius:22px 22px 0 0;" />
+          <div class="book-levels" style="padding:16px 20px 20px;">
+            <span class="level-pill" style="background:#ede9fe;">A1</span>
+            <span class="level-pill" style="background:#fce7f3;">A2</span>
+            <span class="level-pill" style="background:#fef3c7;">B1</span>
+            <span class="level-pill" style="background:#d1fae5;">B2</span>
+            <span class="level-pill" style="background:#ede9fe;">C1</span>
+            <span class="level-pill" style="background:#fce7f3;">C2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROBLEM
+============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">O Problema</span>
+      <h2 class="section-title">Reconhece alguma dessas situações?</h2>
+    </div>
+    <ul class="problem-list">
+      <!-- EDITAR: lista de dores -->
+      <li class="reveal"><span>❌</span> Você estuda inglês, mas na hora de ler um texto real, trava tudo</li>
+      <li class="reveal"><span>❌</span> Entende as regras, mas não consegue pensar em inglês de forma natural</li>
+      <li class="reveal"><span>❌</span> Já tentou apps, cursos, videoaulas — e nada realmente grudou</li>
+      <li class="reveal"><span>❌</span> Fica dependendo de tradução palavra por palavra pra entender qualquer coisa</li>
+      <li class="reveal"><span>❌</span> Sente que seu inglês está "parado no tempo" sem evolução real</li>
+    </ul>
+    <div class="problem-transition reveal">
+      <strong>O problema não é você. É o método.</strong><br/>
+      A maioria dos cursos te ensina <em>sobre</em> inglês. Esse ebook te coloca <em>dentro</em> do inglês — da mesma forma que o cérebro aprende de verdade.
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SOLUTION
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">A Solução</span>
+      <h2 class="section-title">Apresentando: Fluência em Inglês Sem Travar Lendo Histórias</h2>
+      <p class="section-sub">
+        Um sistema de 200 histórias progressivas, do nível A1 ao C2, criado para desenvolver sua compreensão e vocabulário de forma natural — sem regras, sem decoreba, sem tradução mental. Você simplesmente lê. E enquanto lê, aprende.
+      </p>
+    </div>
+    <div class="diff-grid">
+      <!-- EDITAR: diferenciais do produto -->
+      <div class="diff-card reveal">
+        <div class="diff-card-icon">📖</div>
+        <h3>200 histórias reais</h3>
+        <p>Organizadas do básico ao avançado, cobrindo todos os 6 níveis do CEFR.</p>
+      </div>
+      <div class="diff-card reveal">
+        <div class="diff-card-icon">🧠</div>
+        <h3>Aprendizado progressivo</h3>
+        <p>O nível aumenta gradualmente, sem saltos bruscos que travam o aprendizado.</p>
+      </div>
+      <div class="diff-card reveal">
+        <div class="diff-card-icon">📝</div>
+        <h3>Vocabulário contextual</h3>
+        <p>Você aprende as palavras no uso real, não isolado em listas sem sentido.</p>
+      </div>
+      <div class="diff-card reveal">
+        <div class="diff-card-icon">✏️</div>
+        <h3>Exercícios práticos</h3>
+        <p>Cada história vem com exercícios para fixar o que você acabou de aprender.</p>
+      </div>
+      <div class="diff-card reveal">
+        <div class="diff-card-icon">🔄</div>
+        <h3>Método imersivo</h3>
+        <p>Você pensa em inglês — não traduz. O mesmo processo que fluentes usam.</p>
+      </div>
+      <div class="diff-card reveal">
+        <div class="diff-card-icon">📱</div>
+        <h3>Qualquer dispositivo</h3>
+        <p>Celular, tablet ou computador. Estude onde e quando quiser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     LEVELS
+============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">Conteúdo</span>
+      <h2 class="section-title">O que você vai receber</h2>
+      <p class="section-sub">6 níveis completos, 200 histórias progressivas — do zero à maestria.</p>
+    </div>
+    <div class="levels-grid">
+      <!-- EDITAR: descrições de cada nível -->
+      <div class="level-card reveal">
+        <div class="level-card-header">
+          <div>
+            <div class="level-card-title">Iniciante</div>
+            <div class="level-card-stories">40 histórias</div>
+          </div>
+          <span class="level-badge">A1</span>
+        </div>
+        <div class="level-card-body">
+          Vocabulário básico. Frases curtas. O ponto de partida ideal para quem está começando do zero. Você começa a ler em inglês desde o primeiro dia, sem estresse.
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-card-header">
+          <div>
+            <div class="level-card-title">Básico</div>
+            <div class="level-card-stories">40 histórias</div>
+          </div>
+          <span class="level-badge">A2</span>
+        </div>
+        <div class="level-card-body">
+          O vocabulário se expande. As situações ficam mais ricas. Você já consegue acompanhar histórias do cotidiano com mais confiança.
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-card-header">
+          <div>
+            <div class="level-card-title">Intermediário</div>
+            <div class="level-card-stories">40 histórias</div>
+          </div>
+          <span class="level-badge">B1</span>
+        </div>
+        <div class="level-card-body">
+          Estruturas mais complexas. Narrativas mais longas. Você começa a entender inglês sem precisar traduzir cada frase.
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-card-header">
+          <div>
+            <div class="level-card-title">Intermediário Superior</div>
+            <div class="level-card-stories">40 histórias</div>
+          </div>
+          <span class="level-badge">B2</span>
+        </div>
+        <div class="level-card-body">
+          Vocabulário sofisticado. Histórias densas com nuances. Seu inglês começa a soar natural — por dentro da sua cabeça.
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-card-header">
+          <div>
+            <div class="level-card-title">Avançado</div>
+            <div class="level-card-stories">20 histórias</div>
+          </div>
+          <span class="level-badge">C1</span>
+        </div>
+        <div class="level-card-body">
+          Textos de alto nível. Expressões idiomáticas. Você lê como um falante fluente lê — rápido, direto, sem pausa.
+        </div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-card-header">
+          <div>
+            <div class="level-card-title">Maestria</div>
+            <div class="level-card-stories">20 histórias</div>
+          </div>
+          <span class="level-badge">C2</span>
+        </div>
+        <div class="level-card-body">
+          O topo. Histórias com linguagem literária, vocabulário raro e estruturas complexas. Poucos chegam aqui — e quem chega, domina.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOR WHO
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">Fit</span>
+      <h2 class="section-title">É pra você?</h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-box reveal">
+        <h3>✅ Esse ebook é pra você se…</h3>
+        <!-- EDITAR: lista de para quem é -->
+        <ul class="who-list">
+          <li><span>✅</span> Quer sair do básico de uma vez por todas</li>
+          <li><span>✅</span> Tem pouco tempo mas quer um método que realmente funciona</li>
+          <li><span>✅</span> Aprende melhor lendo do que em aulas tradicionais</li>
+          <li><span>✅</span> Quer melhorar vocabulário, leitura e compreensão ao mesmo tempo</li>
+          <li><span>✅</span> Está cansado de métodos que prometem e não entregam</li>
+        </ul>
+      </div>
+      <div class="who-box reveal" style="background:var(--muted);">
+        <h3>❌ Não é pra você se…</h3>
+        <!-- EDITAR: lista de para quem não é -->
+        <ul class="who-list">
+          <li><span>❌</span> Quer uma solução mágica sem nenhum esforço</li>
+          <li><span>❌</span> Nunca vai abrir o material (rs)</li>
+          <li><span>❌</span> Prefere ficar só assistindo vídeos sem ler nada</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">Depoimentos</span>
+      <h2 class="section-title">O que dizem quem já está lendo</h2>
+    </div>
+    <div class="testimonials-grid">
+      <!-- EDITAR: substituir depoimentos reais aqui -->
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          Sempre me perdia em textos em inglês. Com as histórias do A1 ao B1, comecei a ler sem parar para traduzir. É incrível como isso muda tudo.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JM</div>
+          <div>
+            <div class="testimonial-name">Juliana M.</div>
+            <div class="testimonial-info">29 anos, São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          Tentei vários aplicativos e cursos. Esse ebook foi o único que me fez sentir que estava realmente evoluindo. Cheguei no B2 em alguns meses.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RT</div>
+          <div>
+            <div class="testimonial-name">Rafael T.</div>
+            <div class="testimonial-info">34 anos, Curitiba</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          Estou no C1 agora e é desafiador do jeito certo. Vocabulário que eu nunca tinha visto antes, mas o contexto das histórias me ajuda a entender tudo.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">CS</div>
+          <div>
+            <div class="testimonial-name">Carla S.</div>
+            <div class="testimonial-info">22 anos, Rio de Janeiro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PRICING
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">Oferta</span>
+      <h2 class="section-title">Tudo isso por apenas:</h2>
+    </div>
+
+    <div class="pricing-card reveal">
+      <!-- EDITAR: badge de oferta -->
+      <div class="pricing-badge">🔥 Oferta especial</div>
+
+      <!-- EDITAR: preço riscado e preço atual -->
+      <div class="price-was">De R$ 197,00</div>
+      <div class="price-now">R$ 97,00</div>
+      <div class="price-desc">Acesso imediato a todos os 6 níveis — 200 histórias completas com vocabulário e exercícios.</div>
+
+      <ul class="checklist">
+        <!-- EDITAR: lista do que está incluso -->
+        <li><span class="check-icon">✓</span> 200 histórias em inglês (A1 ao C2)</li>
+        <li><span class="check-icon">✓</span> Vocabulário contextual em cada história</li>
+        <li><span class="check-icon">✓</span> Exercícios de fixação por nível</li>
+        <li><span class="check-icon">✓</span> Acesso em qualquer dispositivo</li>
+        <li><span class="check-icon">✓</span> Atualização futura sem custo adicional</li>
+      </ul>
+
+      <!-- EDITAR: link do botão de compra -->
+      <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+        COMPRAR AGORA — R$&nbsp;97
+      </a>
+      <div class="secure-badge">🔒 Pagamento 100% seguro via Hotmart</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     GUARANTEE
+============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">Garantia</span>
+      <h2 class="section-title">Risco zero — Garantia de 7 dias</h2>
+    </div>
+    <div class="guarantee-box reveal">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <h3>Sua satisfação ou seu dinheiro de volta</h3>
+        <p style="color:var(--muted-fg);font-size:.97rem;line-height:1.75;">
+          Se por qualquer motivo você não gostar do material nos primeiros 7 dias após a compra, basta solicitar o reembolso direto pela Hotmart. <strong>Sem perguntas, sem burocracia.</strong> Você não tem nada a perder — só a ler.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">FAQ</span>
+      <h2 class="section-title">Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list">
+      <!-- EDITAR: perguntas e respostas -->
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Para quem é esse ebook?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Para qualquer pessoa que queira melhorar seu inglês através da leitura — do iniciante absoluto até quem quer dominar o nível C2.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Como vou receber o material?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Imediatamente após a compra, você receberá um email com as instruções de acesso pela plataforma Hotmart.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Em qual formato está o material?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Em PDF, acessível em celular, tablet ou computador — sem nenhum app especial necessário.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Preciso saber inglês pra começar?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Não. O nível A1 foi criado para quem está começando do zero. Você evolui gradualmente, no seu ritmo.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          E se eu não gostar?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Você tem 7 dias de garantia integral pela Hotmart. Reembolso total sem questionamentos — é só pedir.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Vou receber atualizações futuras?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Sim. Quem comprar agora recebe futuras atualizações sem pagar nada a mais. Você garante o preço de lançamento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section id="final-cta">
+  <!-- Deco circles -->
+  <div class="cta-deco" style="width:300px;height:300px;background:#fff;top:-100px;left:-80px;"></div>
+  <div class="cta-deco" style="width:200px;height:200px;background:var(--tertiary);bottom:-60px;right:-60px;"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="reveal">
+      <h2>Comece hoje. O primeiro passo é mais simples do que você pensa.</h2>
+      <p>
+        Você não precisa de mais um curso. Precisa de um método que funciona. São 200 histórias esperando por você — da primeira frase em inglês até a fluência real.
+      </p>
+      <!-- EDITAR: link do botão final -->
+      <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-final btn-lg btn-arrow" target="_blank" rel="noopener">
+        QUERO COMEÇAR AGORA — R$&nbsp;97
+      </a>
+      <div class="trust final-trust" style="justify-content:center;">
+        <span><span>✔</span> Acesso imediato</span>
+        <span><span>✔</span> Garantia de 7 dias</span>
+        <span><span>✔</span> Sem mensalidade</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <!-- EDITAR: nome/marca do produtor, links de política -->
+  <p>© 2024 Fluência em Inglês Sem Travar Lendo Histórias. Todos os direitos reservados.</p>
+  <p style="margin-top:6px;">Distribuído pela <a href="https://hotmart.com" target="_blank" rel="noopener">Hotmart</a></p>
+</footer>
+
+
+<!-- ============================================================
+     JS: Header scroll + FAQ accordion + Scroll reveal
+============================================================ -->
+<script>
+  // --- Sticky header shadow ---
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // --- FAQ accordion ---
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => b.setAttribute('aria-expanded','false'));
+      // Open clicked if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // --- Scroll reveal (Intersection Observer) ---
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger siblings
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
