@@ -13,20 +13,22 @@
        EDITAR AQUI: cores e fontes
     ============================================================ */
     :root {
-      --bg:             #FFFDF5;
-      --fg:             #1E293B;
-      --muted:          #F1F5F9;
-      --muted-fg:       #64748B;
-      --accent:         #8B5CF6;
-      --accent-fg:      #FFFFFF;
-      --secondary:      #F472B6;
-      --tertiary:       #FBBF24;
+      --bg:             #0C0F1A;
+      --fg:             #F1F5F9;
+      --muted:          #131929;
+      --muted-fg:       #94A3B8;
+      --accent:         #F59E0B;
+      --accent-fg:      #0C0F1A;
+      --accent-dim:     rgba(245,158,11,.12);
+      --secondary:      #D97706;
+      --tertiary:       #F59E0B;
       --quaternary:     #34D399;
-      --border:         #E2E8F0;
-      --card:           #FFFFFF;
-      --shadow:         4px 4px 0px #1E293B;
-      --shadow-hover:   6px 6px 0px #1E293B;
-      --shadow-active:  2px 2px 0px #1E293B;
+      --border:         rgba(255,255,255,.08);
+      --border-mid:     rgba(255,255,255,.14);
+      --card:           #131929;
+      --shadow:         0 4px 24px rgba(0,0,0,.45);
+      --shadow-hover:   0 8px 32px rgba(0,0,0,.55);
+      --shadow-active:  0 2px 10px rgba(0,0,0,.3);
       --radius-sm:      8px;
       --radius-md:      16px;
       --radius-lg:      24px;
@@ -43,6 +45,7 @@
     body {
       font-family: var(--font-body);
       background: var(--bg);
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,.07) 0%, transparent 60%);
       color: var(--fg);
       line-height: 1.6;
       overflow-x: hidden;
@@ -56,19 +59,20 @@
     h1,h2,h3,h4 { font-family: var(--font-heading); line-height: 1.2; }
 
     .tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: .75rem;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      background: var(--tertiary);
-      color: var(--fg);
-      border: 2px solid var(--fg);
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(245,158,11,.3);
       border-radius: var(--radius-full);
-      padding: 4px 14px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow);
+      padding: 6px 16px;
+      margin-bottom: 20px;
     }
 
     /* ---- Buttons ---- */
@@ -77,28 +81,27 @@
       align-items: center;
       gap: 10px;
       font-family: var(--font-heading);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1rem;
       text-decoration: none;
-      border: 2px solid var(--fg);
+      border: none;
       border-radius: var(--radius-full);
       padding: 14px 32px;
       cursor: pointer;
-      transition: all .3s cubic-bezier(.34,1.56,.64,1);
+      transition: opacity .2s, transform .2s;
       position: relative;
     }
     .btn-primary {
       background: var(--accent);
       color: var(--accent-fg);
-      box-shadow: var(--shadow);
     }
     .btn-primary:hover {
-      transform: translate(-2px,-2px);
-      box-shadow: var(--shadow-hover);
+      opacity: .9;
+      transform: translateY(-2px);
     }
     .btn-primary:active {
-      transform: translate(2px,2px);
-      box-shadow: var(--shadow-active);
+      opacity: 1;
+      transform: translateY(0);
     }
     .btn-lg { font-size: 1.15rem; padding: 18px 42px; }
     .btn-arrow::after {
@@ -144,9 +147,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: rgba(255,253,245,.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--border);
+      background: rgba(12,15,26,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       transition: box-shadow .3s;
     }
     #site-header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
@@ -169,16 +172,15 @@
       gap: 8px;
     }
     .header-logo-icon {
-      background: var(--accent);
-      color: #fff;
+      background: var(--accent-dim);
+      color: var(--accent);
       width: 32px; height: 32px;
       border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center;
       font-size: .75rem;
       font-weight: 800;
       letter-spacing: .04em;
-      border: 2px solid var(--fg);
-      box-shadow: 2px 2px 0 var(--fg);
+      border: 1px solid rgba(245,158,11,.3);
       flex-shrink: 0;
     }
 
@@ -229,9 +231,9 @@
     }
     .book-card {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: none;
       border-radius: var(--radius-lg);
-      box-shadow: 10px 10px 0 var(--fg);
+      box-shadow: var(--shadow);
       padding: 0;
       width: 300px;
       position: relative;
@@ -250,14 +252,20 @@
       font-size: .7rem;
       padding: 3px 10px;
       border-radius: var(--radius-full);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
+    }
+    .hero-mockup {
+      width: 100%;
+      max-width: 576px;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 24px 48px rgba(245,158,11,.18));
     }
     .hero-deco-circle {
       position: absolute;
-      width: 280px; height: 280px;
-      background: var(--tertiary);
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(245,158,11,.15) 0%, transparent 70%);
       border-radius: 50%;
-      opacity: .3;
       top: 50%; left: 50%;
       transform: translate(-50%,-50%);
       z-index: 1;
@@ -281,24 +289,25 @@
       align-items: flex-start;
       gap: 12px;
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-md);
       padding: 14px 18px;
       box-shadow: var(--shadow);
       font-size: 1rem;
       transition: transform .3s ease;
     }
-    .problem-list li:hover { transform: translate(-2px,-2px); }
+    .problem-list li:hover { transform: translateY(-2px); }
     .problem-transition {
-      background: var(--accent);
-      color: #fff;
-      border: 2px solid var(--fg);
-      border-radius: var(--radius-lg);
+      background: var(--card);
+      color: var(--muted-fg);
+      border: 1px solid var(--border-mid);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-md);
       padding: 24px 28px;
       font-size: 1rem;
-      line-height: 1.7;
-      box-shadow: var(--shadow);
+      line-height: 1.75;
     }
+    .problem-transition strong { color: var(--fg); }
 
     /* ========== SOLUTION CARDS ========== */
     .diff-grid {
@@ -309,21 +318,20 @@
     }
     .diff-card {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-lg);
       padding: 28px 24px;
       box-shadow: var(--shadow);
       transition: all .3s cubic-bezier(.34,1.56,.64,1);
     }
-    .diff-card:hover { transform: translate(-2px,-2px) rotate(-1deg); box-shadow: var(--shadow-hover); }
+    .diff-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
     .diff-card-icon {
       width: 52px; height: 52px;
       border-radius: 50%;
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem;
       margin-bottom: 16px;
-      box-shadow: 3px 3px 0 var(--fg);
     }
     .diff-card:nth-child(1) .diff-card-icon { background: var(--accent); }
     .diff-card:nth-child(2) .diff-card-icon { background: var(--secondary); }
@@ -347,19 +355,19 @@
     }
     .level-card {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: all .3s cubic-bezier(.34,1.56,.64,1);
     }
-    .level-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hover); }
+    .level-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
     .level-card-header {
       padding: 20px 24px;
       display: flex;
       align-items: center;
       gap: 14px;
-      border-bottom: 2px solid var(--fg);
+      border-bottom: 1px solid var(--border);
     }
     .level-badge {
       font-family: var(--font-heading);
@@ -367,21 +375,21 @@
       font-size: .8rem;
       padding: 5px 12px;
       border-radius: var(--radius-full);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       white-space: nowrap;
     }
-    .level-card:nth-child(1) .level-card-header { background: #ede9fe; }
-    .level-card:nth-child(1) .level-badge { background: var(--accent); color: #fff; }
-    .level-card:nth-child(2) .level-card-header { background: #fce7f3; }
-    .level-card:nth-child(2) .level-badge { background: var(--secondary); color: #fff; }
-    .level-card:nth-child(3) .level-card-header { background: #fef3c7; }
-    .level-card:nth-child(3) .level-badge { background: var(--tertiary); color: var(--fg); }
-    .level-card:nth-child(4) .level-card-header { background: #d1fae5; }
-    .level-card:nth-child(4) .level-badge { background: var(--quaternary); color: var(--fg); }
-    .level-card:nth-child(5) .level-card-header { background: #ede9fe; }
-    .level-card:nth-child(5) .level-badge { background: var(--accent); color: #fff; }
-    .level-card:nth-child(6) .level-card-header { background: #fce7f3; }
-    .level-card:nth-child(6) .level-badge { background: var(--secondary); color: #fff; }
+    .level-card:nth-child(1) .level-card-header { background: #1A1800; }
+    .level-card:nth-child(1) .level-badge { background: var(--accent); color: var(--accent-fg); }
+    .level-card:nth-child(2) .level-card-header { background: #161A10; }
+    .level-card:nth-child(2) .level-badge { background: var(--quaternary); color: var(--accent-fg); }
+    .level-card:nth-child(3) .level-card-header { background: #1A1800; }
+    .level-card:nth-child(3) .level-badge { background: var(--accent); color: var(--accent-fg); }
+    .level-card:nth-child(4) .level-card-header { background: #161A10; }
+    .level-card:nth-child(4) .level-badge { background: var(--quaternary); color: var(--accent-fg); }
+    .level-card:nth-child(5) .level-card-header { background: #1A1800; }
+    .level-card:nth-child(5) .level-badge { background: var(--accent); color: var(--accent-fg); }
+    .level-card:nth-child(6) .level-card-header { background: #161A10; }
+    .level-card:nth-child(6) .level-badge { background: var(--quaternary); color: var(--accent-fg); }
     .level-card-title { font-weight: 800; font-size: 1rem; }
     .level-card-stories { font-size: .8rem; color: var(--muted-fg); }
     .level-card-body { padding: 20px 24px; font-size: .95rem; color: var(--muted-fg); }
@@ -395,7 +403,7 @@
     }
     .who-box {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-lg);
       padding: 28px 24px;
       box-shadow: var(--shadow);
@@ -417,15 +425,14 @@
     }
     .testimonial-card {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-lg);
       padding: 28px 24px;
       box-shadow: var(--shadow);
       transition: all .3s cubic-bezier(.34,1.56,.64,1);
       position: relative;
     }
-    .testimonial-card:nth-child(2) { box-shadow: 8px 8px 0 var(--secondary); }
-    .testimonial-card:hover { transform: translate(-2px,-2px) rotate(-.5deg); }
+    .testimonial-card:hover { transform: translateY(-4px); }
     .testimonial-quote {
       font-size: 3rem;
       font-family: var(--font-heading);
@@ -448,7 +455,7 @@
     .testimonial-avatar {
       width: 44px; height: 44px;
       border-radius: 50%;
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--font-heading);
       font-weight: 800;
@@ -466,10 +473,10 @@
     /* ========== PRICING ========== */
     .pricing-card {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-lg);
       padding: 48px 40px;
-      box-shadow: 10px 10px 0 var(--fg);
+      box-shadow: var(--shadow);
       max-width: 560px;
       margin: 40px auto 0;
       position: relative;
@@ -478,13 +485,12 @@
       position: absolute;
       top: -18px; right: 32px;
       background: var(--tertiary);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-full);
       padding: 6px 18px;
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: .8rem;
-      box-shadow: 3px 3px 0 var(--fg);
       transform: rotate(2deg);
     }
     .price-was {
@@ -510,12 +516,13 @@
       font-size: .95rem;
     }
     .checklist li .check-icon {
-      width: 24px; height: 24px;
+      width: 22px; height: 22px;
       border-radius: 50%;
-      background: var(--quaternary);
-      border: 2px solid var(--fg);
+      background: rgba(52,211,153,.12);
+      border: 1px solid rgba(52,211,153,.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: .75rem;
+      font-size: .7rem;
+      color: var(--quaternary);
       flex-shrink: 0;
     }
     .secure-badge {
@@ -532,7 +539,7 @@
     /* ========== GUARANTEE ========== */
     .guarantee-box {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-lg);
       padding: 40px;
       box-shadow: var(--shadow);
@@ -556,7 +563,7 @@
     .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; max-width: 780px; margin-left: auto; margin-right: auto; }
     .faq-item {
       background: var(--card);
-      border: 2px solid var(--fg);
+      border: 1px solid var(--border-mid);
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow);
@@ -580,14 +587,14 @@
     .faq-q .faq-arrow {
       width: 28px; height: 28px;
       border-radius: 50%;
-      background: var(--muted);
-      border: 2px solid var(--fg);
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       font-size: .8rem;
       transition: transform .3s;
       flex-shrink: 0;
     }
-    .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--accent); color: #fff; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--accent); color: var(--accent-fg); }
     .faq-a {
       max-height: 0;
       overflow: hidden;
@@ -600,22 +607,27 @@
 
     /* ========== FINAL CTA ========== */
     #final-cta {
-      background: var(--accent);
-      color: #fff;
+      background: var(--muted);
+      border-top: 1px solid rgba(245,158,11,.25);
       text-align: center;
       padding: 96px 20px;
       position: relative;
       overflow: hidden;
     }
-    #final-cta h2 { color: #fff; font-size: clamp(1.8rem,4vw,2.8rem); margin-bottom: 16px; }
-    #final-cta p { font-size: 1.05rem; color: rgba(255,255,255,.82); max-width: 560px; margin: 0 auto 36px; }
-    .btn-final {
-      background: var(--tertiary);
-      color: var(--fg);
-      border-color: var(--fg);
-      box-shadow: var(--shadow);
+    #final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(245,158,11,.08) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .btn-final:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hover); }
+    #final-cta h2 { color: var(--fg); font-size: clamp(1.8rem,4vw,2.8rem); margin-bottom: 16px; }
+    #final-cta p { font-size: 1.05rem; color: var(--muted-fg); max-width: 560px; margin: 0 auto 36px; }
+    .btn-final {
+      background: var(--fg);
+      color: var(--bg);
+    }
+    .btn-final:hover { opacity: .9; transform: translateY(-2px); }
     .final-trust { color: rgba(255,255,255,.75); margin-top: 16px; }
     /* Deco circles inside final cta */
     .cta-deco {
@@ -626,13 +638,14 @@
 
     /* ========== FOOTER ========== */
     footer {
-      background: var(--fg);
-      color: rgba(255,255,255,.6);
+      background: #05050B;
+      color: rgba(255,255,255,.4);
       text-align: center;
       padding: 24px;
       font-size: .85rem;
+      border-top: 1px solid var(--border);
     }
-    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a { color: rgba(255,255,255,.35); text-decoration: none; }
 
     /* ========== SCROLL ANIMATIONS ========== */
     .reveal {
@@ -718,17 +731,7 @@
 
       <div class="hero-visual reveal">
         <div class="hero-deco-circle"></div>
-        <div class="book-card">
-          <img src="e0fa9595-0802-4754-bdc7-f467d771364c.png" alt="Capa do ebook Fluência em Inglês Sem Travar Lendo Histórias" style="width:100%;display:block;border-radius:22px 22px 0 0;" />
-          <div class="book-levels" style="padding:16px 20px 20px;">
-            <span class="level-pill" style="background:#ede9fe;">A1</span>
-            <span class="level-pill" style="background:#fce7f3;">A2</span>
-            <span class="level-pill" style="background:#fef3c7;">B1</span>
-            <span class="level-pill" style="background:#d1fae5;">B2</span>
-            <span class="level-pill" style="background:#ede9fe;">C1</span>
-            <span class="level-pill" style="background:#fce7f3;">C2</span>
-          </div>
-        </div>
+        <img src="transparente.png" alt="Fluência em Inglês Sem Travar — mockup do produto" class="hero-mockup" />
       </div>
     </div>
   </div>
@@ -919,7 +922,7 @@
           <li><span>✅</span> Está cansado de métodos que prometem e não entregam</li>
         </ul>
       </div>
-      <div class="who-box reveal" style="background:var(--muted);">
+      <div class="who-box reveal">
         <h3>❌ Não é pra você se…</h3>
         <!-- EDITAR: lista de para quem não é -->
         <ul class="who-list">
