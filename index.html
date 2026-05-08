@@ -647,6 +647,19 @@
     }
     footer a { color: rgba(255,255,255,.35); text-decoration: none; }
 
+    /* ========== PREÇOS: esconde até geo ser resolvido ========== */
+    .price-tag,
+    .price-was,
+    .price-now {
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .price-tag.price-ready,
+    .price-was.price-ready,
+    .price-now.price-ready {
+      opacity: 1;
+    }
+
     /* ========== SCROLL ANIMATIONS ========== */
     .reveal {
       opacity: 0;
@@ -707,7 +720,7 @@
       <span class="header-logo-text">Fluência em Inglês</span>
     </div>
     <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-arrow" target="_blank" rel="noopener">
-      Comprar — R$&nbsp;97
+      Comprar — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
     </a>
   </div>
 </header>
@@ -738,7 +751,7 @@
         </p>
         <!-- EDITAR: link do botão CTA -->
         <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener">
-          QUERO MINHA CÓPIA AGORA — R$&nbsp;97
+          QUERO MINHA CÓPIA AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
         </a>
         <div class="trust">
           <span><span class="dot">✔</span> Acesso imediato</span>
@@ -1027,8 +1040,9 @@
       <div class="pricing-badge">🔥 Oferta especial</div>
 
       <!-- EDITAR: preço riscado e preço atual -->
-      <div class="price-was">De R$ 197,00</div>
-      <div class="price-now">R$ 97,00</div>
+      <div class="price-was" data-brl="De R$ 197,00" data-eur="De €37" data-usd="De US$ 38">De R$ 197,00</div>
+      <div class="price-now" data-brl="R$ 97,00" data-eur="€19" data-usd="US$ 20">R$ 97,00</div>
+      <div class="vat-note" style="display:none;font-size:.82rem;color:var(--muted-fg);margin-top:6px;margin-bottom:2px;">+ €4,37 VAT · Total: <strong>€23,37</strong></div>
       <div class="price-desc">Acesso imediato a todos os 6 níveis — 200 histórias completas com vocabulário e exercícios.</div>
 
       <ul class="checklist">
@@ -1042,7 +1056,7 @@
 
       <!-- EDITAR: link do botão de compra -->
       <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
-        COMPRAR AGORA — R$&nbsp;97
+        COMPRAR AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
       </a>
       <div class="secure-badge">🔒 Pagamento 100% seguro via Hotmart</div>
     </div>
@@ -1146,7 +1160,7 @@
       </p>
       <!-- EDITAR: link do botão final -->
       <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-final btn-lg btn-arrow" target="_blank" rel="noopener">
-        QUERO COMEÇAR AGORA — R$&nbsp;97
+        QUERO COMEÇAR AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
       </a>
       <div class="trust final-trust" style="justify-content:center;">
         <span><span>✔</span> Acesso imediato</span>
@@ -1211,6 +1225,101 @@
   }, { threshold: 0.12 });
 
   revealEls.forEach(el => observer.observe(el));
+</script>
+
+<!-- ============================================================
+     GEOLOCALIZAÇÃO: troca preços BRL → EUR para visitantes da Europa
+============================================================ -->
+<script>
+(function () {
+  // Lista de todos os países da Europa (EU + não-EU)
+  const EU_COUNTRIES = [
+    'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU',
+    'IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES',
+    'SE',                          // União Europeia
+    'AL','AD','BY','BA','ME','IS', // Outros países europeus
+    'XK','LI','MK','MD','MC','NO',
+    'SM','RS','CH','UA','GB','VA'
+  ];
+
+  function showPrices() {
+    document.querySelectorAll('.price-tag, .price-was, .price-now').forEach(el => {
+      el.classList.add('price-ready');
+    });
+  }
+
+  const BR_COUNTRY = 'BR';
+
+  function applyEuroPrices() {
+    document.querySelectorAll('.price-tag').forEach(el => el.innerHTML = el.dataset.eur);
+    const priceWas = document.querySelector('.price-was');
+    const priceNow = document.querySelector('.price-now');
+    if (priceWas) priceWas.textContent = priceWas.dataset.eur;
+    if (priceNow) priceNow.textContent = priceNow.dataset.eur;
+    const vatNote = document.querySelector('.vat-note');
+    if (vatNote) vatNote.style.display = 'block';
+  }
+
+  function applyUsdPrices() {
+    document.querySelectorAll('.price-tag').forEach(el => el.innerHTML = el.dataset.usd);
+    const priceWas = document.querySelector('.price-was');
+    const priceNow = document.querySelector('.price-now');
+    if (priceWas) priceWas.textContent = priceWas.dataset.usd;
+    if (priceNow) priceNow.textContent = priceNow.dataset.usd;
+  }
+
+  function resolveAndShow(currency) {
+    if (currency === 'eur') applyEuroPrices();
+    else if (currency === 'usd') applyUsdPrices();
+    // 'brl' → não faz nada, mantém padrão
+    showPrices();
+    localStorage.setItem('geo_currency', currency);
+    localStorage.setItem('geo_currency_ts', Date.now());
+  }
+
+  function getCurrency(countryCode) {
+    if (!countryCode || countryCode === BR_COUNTRY) return 'brl';
+    if (EU_COUNTRIES.includes(countryCode)) return 'eur';
+    return 'usd'; // resto do mundo
+  }
+
+  // Parâmetro de teste na URL: ?moeda=eur | brl | usd
+  const urlParam = new URLSearchParams(window.location.search).get('moeda');
+  if (urlParam === 'eur') { applyEuroPrices(); showPrices(); return; }
+  if (urlParam === 'usd') { applyUsdPrices(); showPrices(); return; }
+  if (urlParam === 'brl') { showPrices(); return; }
+
+  // Verifica cache do localStorage (válido por 24h)
+  const cached = localStorage.getItem('geo_currency');
+  const cachedTs = parseInt(localStorage.getItem('geo_currency_ts') || '0');
+  const CACHE_TTL = 24 * 60 * 60 * 1000;
+
+  if (cached && (Date.now() - cachedTs) < CACHE_TTL) {
+    resolveAndShow(cached);
+    return;
+  }
+
+  // Sem cache: detecta pelo IP
+  fetch('https://www.cloudflare.com/cdn-cgi/trace')
+    .then(r => r.text())
+    .then(text => {
+      const match = text.match(/loc=([A-Z]{2})/);
+      const country = match ? match[1] : null;
+      if (country) {
+        resolveAndShow(getCurrency(country));
+      } else {
+        return fetch('https://ipapi.co/json/')
+          .then(r => r.json())
+          .then(data => resolveAndShow(getCurrency(data.country_code)));
+      }
+    })
+    .catch(() => {
+      fetch('https://ipapi.co/json/')
+        .then(r => r.json())
+        .then(data => resolveAndShow(getCurrency(data.country_code)))
+        .catch(() => showPrices());
+    });
+})();
 </script>
 
 </body>
