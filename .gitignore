@@ -1,0 +1,7 @@
+node_modules/
+package.json
+package-lock.json
+favicon_crop.png
+depoimentos.png
+depoimentos2.png
+.claude/

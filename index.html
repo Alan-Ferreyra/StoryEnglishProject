@@ -4,6 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fluência em Inglês Sem Travar Lendo Histórias</title>
+  <meta name="description" content="200 histórias progressivas em inglês do A1 ao C2. Aprenda a pensar em inglês sem travar — só 15 minutos por dia. Acesso imediato, garantia de 7 dias." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph (WhatsApp, Facebook, Instagram, LinkedIn) -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Fluência em Inglês Sem Travar Lendo Histórias" />
+  <meta property="og:description" content="200 histórias progressivas em inglês do A1 ao C2. Aprenda a pensar em inglês sem travar — só 15 minutos por dia." />
+  <meta property="og:image"       content="https://alan-ferreyra.github.io/StoryEnglishProject/transparente.png" />
+  <meta property="og:url"         content="https://alan-ferreyra.github.io/StoryEnglishProject/" />
+  <meta property="og:locale"      content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Fluência em Inglês Sem Travar Lendo Histórias" />
+  <meta name="twitter:description" content="200 histórias progressivas em inglês do A1 ao C2. Só 15 min/dia. Garantia de 7 dias." />
+  <meta name="twitter:image"       content="https://alan-ferreyra.github.io/StoryEnglishProject/transparente.png" />
+
+  <link rel="icon" type="image/png" href="favicon.png?v=5" />
+  <link rel="apple-touch-icon" href="favicon.png?v=5" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -660,17 +679,194 @@
       opacity: 1;
     }
 
+    /* ========== COUNTDOWN ========== */
+    .countdown-bar {
+      background: linear-gradient(135deg,#ef4444,#dc2626);
+      border:2px solid var(--fg);
+      border-radius:var(--radius-md);
+      padding:12px 20px;
+      text-align:center;
+      color:#fff;
+      font-family:var(--font-heading);
+      font-weight:700;
+      margin-bottom:20px;
+      box-shadow:var(--shadow);
+      font-size:.9rem;
+    }
+    .countdown-timer { display:inline-flex;gap:6px;align-items:center;font-size:1.3rem;letter-spacing:.05em;margin-top:4px; }
+    .countdown-unit { background:rgba(0,0,0,.3);border-radius:6px;padding:4px 10px;min-width:42px;text-align:center; }
+    .countdown-sep { opacity:.7; }
+
+    /* ========== BEFORE/AFTER ========== */
+    .before-after {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      border:2px solid rgba(255,255,255,.15);
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      margin-top:40px;
+    }
+    .ba-col:first-child { border-right:2px solid rgba(255,255,255,.15); }
+    .ba-header {
+      padding:14px 24px;
+      font-family:var(--font-heading);
+      font-weight:800;
+      font-size:1rem;
+      text-align:center;
+      border-bottom:2px solid rgba(255,255,255,.15);
+    }
+    .ba-col:first-child .ba-header { background:rgba(239,68,68,.25);color:#fca5a5; }
+    .ba-col:last-child  .ba-header { background:rgba(52,211,153,.2);color:#6ee7b7; }
+    .ba-col:first-child .ba-list { background:rgba(239,68,68,.07); }
+    .ba-col:last-child  .ba-list { background:rgba(52,211,153,.07); }
+    .ba-list { list-style:none;padding:20px 24px;display:flex;flex-direction:column;gap:12px;margin:0; }
+    .ba-list li { display:flex;align-items:flex-start;gap:10px;font-size:.92rem;color:rgba(255,255,255,.85); }
+
+    /* ========== VISION BOX ========== */
+    .vision-box {
+      background:linear-gradient(135deg,#7c3aed,#4f46e5);
+      border:2px solid rgba(255,255,255,.2);
+      border-radius:var(--radius-lg);
+      padding:48px 40px;
+      text-align:center;
+      color:#fff;
+      max-width:700px;
+      margin:40px auto 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .vision-box::before { content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(255,255,255,.07);border-radius:50%; }
+    .vision-box h2 { color:#fff;margin-bottom:16px;font-size:clamp(1.5rem,3vw,2rem); }
+    .vision-box p  { color:rgba(255,255,255,.88);font-size:1rem;line-height:1.8; }
+
+    /* ========== ANCHOR + MATH BOX ========== */
+    .anchor-box {
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:var(--radius-md);
+      padding:14px 20px;
+      font-size:.88rem;
+      color:rgba(255,255,255,.7);
+      margin-bottom:16px;
+      text-align:center;
+      line-height:1.6;
+    }
+    .anchor-box strong { color:#fff; }
+
+    /* ========== BONUS CARDS ========== */
+    .bonus-section { margin:20px 0; }
+    .bonus-label { font-family:var(--font-heading);font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;color:rgba(255,255,255,.9); }
+    .bonus-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+    .bonus-card {
+      background:rgba(251,191,36,.12);
+      border:1px solid rgba(251,191,36,.4);
+      border-radius:var(--radius-md);
+      padding:12px 14px;
+      display:flex;align-items:flex-start;gap:10px;
+    }
+    .bonus-card-icon { font-size:1.3rem;flex-shrink:0; }
+    .bonus-card-title { font-weight:700;font-size:.82rem;margin-bottom:2px;color:#fde68a; }
+    .bonus-card-desc { font-size:.75rem;color:rgba(255,255,255,.6); }
+
+    /* ========== LOSS BAR ========== */
+    .loss-bar {
+      background:rgba(239,68,68,.18);
+      border:1px solid rgba(239,68,68,.4);
+      color:rgba(255,255,255,.9);
+      border-radius:var(--radius-md);
+      padding:16px 22px;font-size:.92rem;line-height:1.7;
+      margin:24px 0;text-align:center;
+    }
+    .loss-bar strong { color:#fbbf24; }
+
+    /* ========== SOCIAL PROOF MINI ========== */
+    .social-mini {
+      display:flex;align-items:center;gap:10px;
+      margin-bottom:20px;flex-wrap:wrap;
+    }
+    .social-mini-badge {
+      background:rgba(52,211,153,.2);
+      color:#6ee7b7;
+      border:1px solid rgba(52,211,153,.4);
+      border-radius:var(--radius-full);
+      padding:4px 14px;font-family:var(--font-heading);
+      font-weight:700;font-size:.8rem;
+      white-space:nowrap;
+    }
+    .social-mini-text { font-size:.88rem;color:rgba(255,255,255,.6); }
+
+    @media(max-width:600px){
+      .before-after { grid-template-columns:1fr; }
+      .ba-col:first-child { border-right:none;border-bottom:2px solid rgba(255,255,255,.15); }
+      .bonus-grid { grid-template-columns:1fr; }
+      .vision-box { padding:32px 20px; }
+    }
+
     /* ========== SCROLL ANIMATIONS ========== */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1);
+      transform: translateY(40px);
+      transition: opacity .65s ease, transform .65s cubic-bezier(.34,1.56,.64,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity .65s ease, transform .65s cubic-bezier(.34,1.56,.64,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity .65s ease, transform .65s cubic-bezier(.34,1.56,.64,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ========== UIVERSE-STYLE CTA BUTTON ========== */
+    @keyframes shineSweep {
+      0%   { left: -120%; }
+      50%  { left: 120%; }
+      100% { left: 120%; }
+    }
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 0 12px 2px rgba(245,158,11,.4), 0 4px 24px rgba(0,0,0,.4); }
+      50%       { box-shadow: 0 0 28px 6px rgba(245,158,11,.7), 0 4px 24px rgba(0,0,0,.4); }
+    }
+    .btn-pulse {
+      position: relative;
+      overflow: hidden;
+      animation: ctaGlow 2.4s ease-in-out infinite;
+      transform: translateZ(0);
+    }
+    .btn-pulse::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255,255,255,.45) 50%,
+        transparent 80%
+      );
+      transform: skewX(-20deg);
+      animation: shineSweep 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .btn-pulse:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 36px 8px rgba(245,158,11,.6), 0 8px 32px rgba(0,0,0,.5) !important;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
       .btn-primary:hover, .diff-card:hover, .level-card:hover { transform: none; }
+      .btn-pulse { animation: none; }
+      .btn-pulse::before { animation: none; }
     }
 
     /* ========== RESPONSIVE ========== */
@@ -719,7 +915,7 @@
       <span class="header-logo-icon">FE</span>
       <span class="header-logo-text">Fluência em Inglês</span>
     </div>
-    <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-arrow" target="_blank" rel="noopener">
+    <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-arrow" target="_blank" rel="noopener noreferrer">
       Comprar — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
     </a>
   </div>
@@ -738,7 +934,7 @@
 
   <div class="container">
     <div class="hero-inner">
-      <div class="hero-text reveal">
+      <div class="hero-text reveal-left">
         <div class="hero-eyebrow">
           <!-- EDITAR: tag/eyebrow do hero -->
           <span class="tag">200 Histórias • 6 Níveis • A1 ao C2</span>
@@ -746,11 +942,15 @@
         <h1 class="hero-h1">
           Você estuda inglês há anos… mas ainda <span class="highlight">trava</span> na hora de ler ou entender?
         </h1>
+        <div class="social-mini">
+          <span class="social-mini-badge">✦ +200 pessoas já lendo</span>
+          <span class="social-mini-text">Na 1ª história você já lê do início ao fim — sem traduzir.</span>
+        </div>
         <p class="hero-sub">
-          Descubra o método que treina seu cérebro para pensar em inglês — através de 200 histórias progressivas, do zero à fluência.
+          Descubra o método que treina seu cérebro para pensar em inglês — através de 200 histórias progressivas, do zero à fluência. <strong>Só 15 minutos por dia já fazem diferença.</strong>
         </p>
         <!-- EDITAR: link do botão CTA -->
-        <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener">
+        <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow btn-pulse" target="_blank" rel="noopener noreferrer">
           QUERO MINHA CÓPIA AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
         </a>
         <div class="trust">
@@ -760,7 +960,7 @@
         </div>
       </div>
 
-      <div class="hero-visual reveal">
+      <div class="hero-visual reveal-right">
         <div class="hero-deco-circle"></div>
         <img src="transparente.png" alt="Fluência em Inglês Sem Travar — mockup do produto" class="hero-mockup" />
       </div>
@@ -779,16 +979,54 @@
       <h2 class="section-title">Reconhece alguma dessas situações?</h2>
     </div>
     <ul class="problem-list">
-      <!-- EDITAR: lista de dores -->
-      <li class="reveal"><span>❌</span> Você estuda inglês, mas na hora de ler um texto real, trava tudo</li>
+      <li class="reveal"><span>❌</span> Você trava na hora de ler um texto real em inglês — a cabeça para, a vergonha aparece</li>
       <li class="reveal"><span>❌</span> Entende as regras, mas não consegue pensar em inglês de forma natural</li>
       <li class="reveal"><span>❌</span> Já tentou apps, cursos, videoaulas — e nada realmente grudou</li>
       <li class="reveal"><span>❌</span> Fica dependendo de tradução palavra por palavra pra entender qualquer coisa</li>
-      <li class="reveal"><span>❌</span> Sente que seu inglês está "parado no tempo" sem evolução real</li>
+      <li class="reveal"><span>❌</span> 83% das vagas internacionais exigem inglês — e você ainda trava na entrevista</li>
+      <li class="reveal"><span>❌</span> Já disse "ano que vem aprendo inglês de verdade" mais de uma vez na vida</li>
     </ul>
     <div class="problem-transition reveal">
-      <strong>O problema não é você. É o método.</strong><br/>
-      A maioria dos cursos te ensina <em>sobre</em> inglês. Esse ebook te coloca <em>dentro</em> do inglês — da mesma forma que o cérebro aprende de verdade.
+      <strong>O problema não é você. É o método que te ensinaram.</strong><br/>
+      Escolas de inglês lucram te mantendo dependente por anos. A maioria dos cursos te ensina <em>sobre</em> inglês. Esse ebook te coloca <em>dentro</em> do inglês — da mesma forma que o cérebro humano aprende de verdade. Como uma criança aprende: lendo histórias.
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BEFORE / AFTER
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal centered">
+      <span class="tag">A Transformação</span>
+      <h2 class="section-title">O antes e o depois</h2>
+      <p class="section-sub">Veja exatamente o que muda quando você usa o método certo.</p>
+    </div>
+    <div class="before-after reveal">
+      <div class="ba-col reveal-left">
+        <div class="ba-header">😩 Antes — Método Tradicional</div>
+        <ul class="ba-list">
+          <li><span>❌</span> Trava ao ler qualquer texto em inglês</li>
+          <li><span>❌</span> Traduz palavra por palavra na cabeça</li>
+          <li><span>❌</span> Vergonha em reuniões e entrevistas</li>
+          <li><span>❌</span> Estuda há anos sem sentir evolução</li>
+          <li><span>❌</span> Depende de legenda pra entender séries</li>
+          <li><span>❌</span> Inglês "parado no tempo" há anos</li>
+        </ul>
+      </div>
+      <div class="ba-col reveal-right">
+        <div class="ba-header">😎 Depois — Lendo Histórias</div>
+        <ul class="ba-list">
+          <li><span>✅</span> Lê inglês fluido, sem parar pra traduzir</li>
+          <li><span>✅</span> Pensa diretamente em inglês</li>
+          <li><span>✅</span> Confiança total pra falar e escrever</li>
+          <li><span>✅</span> Evolução visível semana a semana</li>
+          <li><span>✅</span> Séries e filmes sem legenda — de verdade</li>
+          <li><span>✅</span> Inglês que abre portas de emprego</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -803,7 +1041,7 @@
       <span class="tag">A Solução</span>
       <h2 class="section-title">Apresentando: Fluência em Inglês Sem Travar Lendo Histórias</h2>
       <p class="section-sub">
-        Um sistema de 200 histórias progressivas, do nível A1 ao C2, criado para desenvolver sua compreensão e vocabulário de forma natural — sem regras, sem decoreba, sem tradução mental. Você simplesmente lê. E enquanto lê, aprende.
+        Nenhuma criança aprendeu a falar decorando gramática. Aprendeu ouvindo e lendo histórias — é exatamente isso que esse método replica. 200 histórias progressivas, do A1 ao C2. Sem apps, sem dicionários, sem professor. <strong>Você abre o PDF e começa a ler. É simples assim.</strong>
       </p>
     </div>
     <div class="diff-grid">
@@ -859,7 +1097,7 @@
         <div class="level-card-header">
           <div>
             <div class="level-card-title">Iniciante</div>
-            <div class="level-card-stories">40 histórias</div>
+            <div class="level-card-stories"><span class="counter" data-target="40">40</span> histórias</div>
           </div>
           <span class="level-badge">A1</span>
         </div>
@@ -871,7 +1109,7 @@
         <div class="level-card-header">
           <div>
             <div class="level-card-title">Básico</div>
-            <div class="level-card-stories">40 histórias</div>
+            <div class="level-card-stories"><span class="counter" data-target="40">40</span> histórias</div>
           </div>
           <span class="level-badge">A2</span>
         </div>
@@ -883,7 +1121,7 @@
         <div class="level-card-header">
           <div>
             <div class="level-card-title">Intermediário</div>
-            <div class="level-card-stories">40 histórias</div>
+            <div class="level-card-stories"><span class="counter" data-target="40">40</span> histórias</div>
           </div>
           <span class="level-badge">B1</span>
         </div>
@@ -895,7 +1133,7 @@
         <div class="level-card-header">
           <div>
             <div class="level-card-title">Intermediário Superior</div>
-            <div class="level-card-stories">40 histórias</div>
+            <div class="level-card-stories"><span class="counter" data-target="40">40</span> histórias</div>
           </div>
           <span class="level-badge">B2</span>
         </div>
@@ -907,7 +1145,7 @@
         <div class="level-card-header">
           <div>
             <div class="level-card-title">Avançado</div>
-            <div class="level-card-stories">20 histórias</div>
+            <div class="level-card-stories"><span class="counter" data-target="20">20</span> histórias</div>
           </div>
           <span class="level-badge">C1</span>
         </div>
@@ -919,7 +1157,7 @@
         <div class="level-card-header">
           <div>
             <div class="level-card-title">Maestria</div>
-            <div class="level-card-stories">20 histórias</div>
+            <div class="level-card-stories"><span class="counter" data-target="20">20</span> histórias</div>
           </div>
           <span class="level-badge">C2</span>
         </div>
@@ -942,24 +1180,23 @@
       <h2 class="section-title">É pra você?</h2>
     </div>
     <div class="who-grid">
-      <div class="who-box reveal">
+      <div class="who-box reveal-left">
         <h3>✅ Esse ebook é pra você se…</h3>
-        <!-- EDITAR: lista de para quem é -->
         <ul class="who-list">
           <li><span>✅</span> Quer sair do básico de uma vez por todas</li>
-          <li><span>✅</span> Tem pouco tempo mas quer um método que realmente funciona</li>
+          <li><span>✅</span> Tem pouco tempo — mas só 15 min/dia já fazem diferença</li>
           <li><span>✅</span> Aprende melhor lendo do que em aulas tradicionais</li>
           <li><span>✅</span> Quer melhorar vocabulário, leitura e compreensão ao mesmo tempo</li>
           <li><span>✅</span> Está cansado de métodos que prometem e não entregam</li>
+          <li><span>✅</span> Se já disse "ano que vem aprendo inglês" pelo menos uma vez 😅</li>
         </ul>
       </div>
-      <div class="who-box reveal">
+      <div class="who-box reveal-right" style="background:var(--muted);">
         <h3>❌ Não é pra você se…</h3>
-        <!-- EDITAR: lista de para quem não é -->
         <ul class="who-list">
-          <li><span>❌</span> Quer uma solução mágica sem nenhum esforço</li>
-          <li><span>❌</span> Nunca vai abrir o material (rs)</li>
-          <li><span>❌</span> Prefere ficar só assistindo vídeos sem ler nada</li>
+          <li><span>❌</span> Quer uma solução mágica sem abrir o material</li>
+          <li><span>❌</span> Prefere gastar R$300/mês num curso e não aparecer nas aulas</li>
+          <li><span>❌</span> Acha que vai aprender inglês só assistindo Reels em português</li>
         </ul>
       </div>
     </div>
@@ -985,7 +1222,7 @@
           Sempre me perdia em textos em inglês. Com as histórias do A1 ao B1, comecei a ler sem parar para traduzir. É incrível como isso muda tudo.
         </p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">JM</div>
+          <div class="testimonial-avatar" style="background-image:url('depoimentos3.png');background-size:300% auto;background-position:0% center;background-color:transparent;color:transparent;"></div>
           <div>
             <div class="testimonial-name">Juliana M.</div>
             <div class="testimonial-info">29 anos, São Paulo</div>
@@ -996,10 +1233,10 @@
         <div class="stars">★★★★★</div>
         <div class="testimonial-quote">"</div>
         <p class="testimonial-text">
-          Tentei vários aplicativos e cursos. Esse ebook foi o único que me fez sentir que estava realmente evoluindo. Cheguei no B2 em alguns meses.
+          Tentei vários aplicativos e cursos. Esse ebook foi o único que me fez sentir que estava realmente evoluindo. Após o B1 comecei a ver séries na Netflix sem legendas. Cheguei ao B2 em 3 meses.
         </p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">RT</div>
+          <div class="testimonial-avatar" style="background-image:url('depoimentos3.png');background-size:300% auto;background-position:50% center;background-color:transparent;color:transparent;"></div>
           <div>
             <div class="testimonial-name">Rafael T.</div>
             <div class="testimonial-info">34 anos, Curitiba</div>
@@ -1013,13 +1250,33 @@
           Estou no C1 agora e é desafiador do jeito certo. Vocabulário que eu nunca tinha visto antes, mas o contexto das histórias me ajuda a entender tudo.
         </p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">CS</div>
+          <div class="testimonial-avatar" style="background-image:url('depoimentos3.png');background-size:300% auto;background-position:100% center;background-color:transparent;color:transparent;"></div>
           <div>
             <div class="testimonial-name">Carla S.</div>
             <div class="testimonial-info">22 anos, Rio de Janeiro</div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     VISION OF FUTURE
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="vision-box reveal">
+      <div style="font-size:3rem;margin-bottom:16px;">🌍</div>
+      <h2>Imagina esta cena...</h2>
+      <p>
+        Você está numa entrevista de emprego internacional. O entrevistador faz uma pergunta em inglês.<br/>
+        E você responde — <strong>fluente, direto, sem travar, sem vergonha.</strong><br/><br/>
+        Ou está assistindo uma série na Netflix sem legenda e entende absolutamente tudo.<br/><br/>
+        Ou viaja pra um país de língua inglesa e se comunica sem stress.<br/><br/>
+        <strong>Isso não é um sonho distante. É o resultado de quem usa o método certo — e cada dia que você adia, é mais uma oportunidade que passa.</strong>
+      </p>
     </div>
   </div>
 </section>
@@ -1036,28 +1293,64 @@
     </div>
 
     <div class="pricing-card reveal">
-      <!-- EDITAR: badge de oferta -->
-      <div class="pricing-badge">🔥 Oferta especial</div>
+      <div class="pricing-badge">🔥 Oferta de lançamento</div>
 
-      <!-- EDITAR: preço riscado e preço atual -->
+      <!-- Countdown urgência -->
+      <div class="countdown-bar">
+        ⏰ Preço especial expira em:
+        <div class="countdown-timer">
+          <span class="countdown-unit" id="cd-h">00</span>
+          <span class="countdown-sep">:</span>
+          <span class="countdown-unit" id="cd-m">00</span>
+          <span class="countdown-sep">:</span>
+          <span class="countdown-unit" id="cd-s">00</span>
+        </div>
+      </div>
+
+      <!-- Ancoragem de preço -->
+      <div class="anchor-box anchor-dynamic"
+        data-brl="📚 Um professor particular custa R$150/hora. Um curso de inglês custa R$300–R$800/mês. Aqui você paga uma única vez e tem acesso para sempre."
+        data-eur="📚 Um professor particular custa €30/hora. Um curso de inglês custa €80–€200/mês. Aqui você paga uma única vez e tem acesso para sempre."
+        data-usd="📚 A private tutor costs $50/hour. An English course costs $100–$300/month. Here you pay once and have access forever.">
+        📚 Um professor particular custa <strong>R$150/hora</strong>. Um curso de inglês custa <strong>R$300–R$800/mês</strong>.<br/>
+        Aqui você paga <strong>uma única vez</strong> e tem acesso para sempre.
+      </div>
+
       <div class="price-was" data-brl="De R$ 197,00" data-eur="De €37" data-usd="De US$ 38">De R$ 197,00</div>
       <div class="price-now" data-brl="R$ 97,00" data-eur="€19" data-usd="US$ 20">R$ 97,00</div>
       <div class="vat-note" style="display:none;font-size:.82rem;color:var(--muted-fg);margin-top:6px;margin-bottom:2px;">+ €4,37 VAT · Total: <strong>€23,37</strong></div>
-      <div class="price-desc">Acesso imediato a todos os 6 níveis — 200 histórias completas com vocabulário e exercícios.</div>
+
+      <!-- Math do valor / reframe -->
+      <div style="font-size:.82rem;color:var(--muted-fg);margin:6px 0 16px;text-align:center;">
+        💡 <span data-brl="R$97 = menos que um jantar fora. A fluência fica para sempre." data-eur="€19 = o preço de dois cafés. A fluência fica para sempre." data-usd="$20 = o preço de dois cafés. A fluência fica para sempre." class="math-note">R$97 = menos que um jantar fora. A fluência fica para sempre.</span>
+      </div>
 
       <ul class="checklist">
-        <!-- EDITAR: lista do que está incluso -->
         <li><span class="check-icon">✓</span> 200 histórias em inglês (A1 ao C2)</li>
         <li><span class="check-icon">✓</span> Vocabulário contextual em cada história</li>
         <li><span class="check-icon">✓</span> Exercícios de fixação por nível</li>
         <li><span class="check-icon">✓</span> Acesso em qualquer dispositivo</li>
-        <li><span class="check-icon">✓</span> Atualização futura sem custo adicional</li>
+        <li><span class="check-icon">✓</span> Garantia de 7 dias — risco zero</li>
       </ul>
 
-      <!-- EDITAR: link do botão de compra -->
-      <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
-        COMPRAR AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
+      <!-- Bónus -->
+      <div class="bonus-section">
+        <div class="bonus-label">🎁 Bônus incluído:</div>
+        <div class="bonus-card" style="width:100%;">
+          <div class="bonus-card-icon">🔄</div>
+          <div>
+            <div class="bonus-card-title">Atualizações Futuras 100% Grátis</div>
+            <div class="bonus-card-desc">Novas histórias e conteúdos adicionados ao longo do tempo — sem pagar nada a mais, para sempre. Quem compra agora garante tudo o que vier a seguir.</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-primary btn-lg btn-arrow btn-pulse" target="_blank" rel="noopener noreferrer" style="width:100%;justify-content:center;">
+        QUERO ACESSO AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
       </a>
+      <p style="text-align:center;font-size:.82rem;color:var(--muted-fg);margin-top:10px;">
+        Leia só uma história hoje. Se não sentir diferença — reembolso garantido, sem perguntas.
+      </p>
       <div class="secure-badge">🔒 Pagamento 100% seguro via Hotmart</div>
     </div>
   </div>
@@ -1154,18 +1447,22 @@
 
   <div class="container" style="position:relative;z-index:1;">
     <div class="reveal">
-      <h2>Comece hoje. O primeiro passo é mais simples do que você pensa.</h2>
+      <h2>Cada dia que você adia é uma oportunidade perdida.</h2>
+      <div class="loss-bar">
+        😬 Enquanto você lê isso, alguém com o mesmo nível está aprendendo inglês com esse método.<br/>
+        <strong>A diferença entre vocês daqui a 3 meses será enorme.</strong>
+      </div>
       <p>
-        Você não precisa de mais um curso. Precisa de um método que funciona. São 200 histórias esperando por você — da primeira frase em inglês até a fluência real.
+        Você não precisa de mais um curso. Precisa de um método que funciona. São 200 histórias esperando por você — da primeira frase em inglês até a fluência real. <strong>Só 15 minutos por dia.</strong>
       </p>
-      <!-- EDITAR: link do botão final -->
-      <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-final btn-lg btn-arrow" target="_blank" rel="noopener">
-        QUERO COMEÇAR AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
+      <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" class="btn btn-final btn-lg btn-arrow" target="_blank" rel="noopener noreferrer">
+        SIM, QUERO COMEÇAR AGORA — <span class="price-tag" data-brl="R$&nbsp;97" data-eur="€19" data-usd="US$&nbsp;20">R$&nbsp;97</span>
       </a>
       <div class="trust final-trust" style="justify-content:center;">
         <span><span>✔</span> Acesso imediato</span>
         <span><span>✔</span> Garantia de 7 dias</span>
         <span><span>✔</span> Sem mensalidade</span>
+        <span><span>✔</span> Atualizações grátis para sempre</span>
       </div>
     </div>
   </div>
@@ -1178,8 +1475,118 @@
 <footer>
   <!-- EDITAR: nome/marca do produtor, links de política -->
   <p>© 2026 Fluência em Inglês Sem Travar Lendo Histórias. Todos os direitos reservados.</p>
-  <p style="margin-top:6px;">Distribuído pela <a href="https://hotmart.com" target="_blank" rel="noopener">Hotmart</a></p>
+  <p style="margin-top:6px;">Distribuído pela <a href="https://hotmart.com" target="_blank" rel="noopener noreferrer">Hotmart</a></p>
 </footer>
+
+<!-- ============================================================
+     EXIT INTENT POPUP
+============================================================ -->
+<div id="exit-overlay" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(4px);
+  z-index:10000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+">
+  <div style="
+    background:#131929;
+    border:1px solid rgba(245,158,11,.4);
+    border-radius:24px;
+    padding:40px 36px;
+    max-width:480px;
+    width:100%;
+    text-align:center;
+    box-shadow:0 24px 64px rgba(0,0,0,.6);
+    position:relative;
+    animation:exitPopIn .4s cubic-bezier(.34,1.56,.64,1);
+  ">
+    <button id="exit-close" style="
+      position:absolute;top:16px;right:16px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:#94A3B8;
+      border-radius:50%;
+      width:32px;height:32px;
+      font-size:1rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+    ">✕</button>
+
+    <div style="font-size:3rem;margin-bottom:12px;">⏳</div>
+    <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.5rem;color:#F1F5F9;margin-bottom:10px;line-height:1.3;">
+      Espera! Antes de ir…
+    </h2>
+    <p style="color:#94A3B8;font-size:.95rem;line-height:1.7;margin-bottom:20px;">
+      Você estava <strong style="color:#F1F5F9;">a um clique</strong> de parar de travar em inglês.<br/>
+      Essa oferta de lançamento pode não estar aqui amanhã.
+    </p>
+    <div style="
+      background:rgba(245,158,11,.1);
+      border:1px solid rgba(245,158,11,.3);
+      border-radius:12px;
+      padding:14px 20px;
+      margin-bottom:24px;
+    ">
+      <div style="font-size:.8rem;color:#94A3B8;text-decoration:line-through;">De R$ 197,00</div>
+      <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:2.2rem;color:#F59E0B;line-height:1;">R$ 97,00</div>
+      <div style="font-size:.8rem;color:#94A3B8;margin-top:4px;">pagamento único · acesso para sempre</div>
+    </div>
+    <a href="https://pay.hotmart.com/W105449107C?checkoutMode=10" target="_blank" rel="noopener noreferrer"
+      class="btn btn-primary btn-pulse"
+      style="width:100%;justify-content:center;font-size:1rem;padding:16px 24px;">
+      QUERO GARANTIR AGORA →
+    </a>
+    <p style="margin-top:14px;font-size:.78rem;color:#64748B;">🔒 Pagamento seguro · Garantia de 7 dias</p>
+  </div>
+</div>
+
+<style>
+@keyframes exitPopIn {
+  from { opacity:0; transform:scale(.85) translateY(20px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
+}
+</style>
+
+<!-- ============================================================
+     SOCIAL PROOF TOAST
+============================================================ -->
+<div id="sp-toast" style="
+  position:fixed;
+  bottom:24px;
+  left:24px;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  gap:12px;
+  background:#1A2035;
+  border:1px solid rgba(255,255,255,.12);
+  border-left:3px solid #F59E0B;
+  border-radius:12px;
+  padding:12px 16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  max-width:300px;
+  animation:spSlideIn .4s cubic-bezier(.34,1.56,.64,1);
+">
+  <div id="sp-icon" style="font-size:1.6rem;flex-shrink:0;"></div>
+  <div>
+    <div id="sp-title" style="font-family:'Outfit',sans-serif;font-weight:700;font-size:.85rem;color:#F1F5F9;line-height:1.3;"></div>
+    <div id="sp-sub" style="font-size:.75rem;color:#64748B;margin-top:2px;"></div>
+  </div>
+</div>
+
+<style>
+@keyframes spSlideIn {
+  from { opacity:0; transform:translateX(-30px) scale(.95); }
+  to   { opacity:1; transform:translateX(0) scale(1); }
+}
+@keyframes spSlideOut {
+  from { opacity:1; transform:translateX(0) scale(1); }
+  to   { opacity:0; transform:translateX(-30px) scale(.95); }
+}
+</style>
 
 
 <!-- ============================================================
@@ -1209,22 +1616,220 @@
   });
 
   // --- Scroll reveal (Intersection Observer) ---
-  const revealEls = document.querySelectorAll('.reveal');
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Stagger siblings
-        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        // Cascata: delay proporcional à posição entre irmãos
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal, .reveal-left, .reveal-right')];
         const idx = siblings.indexOf(entry.target);
         setTimeout(() => {
           entry.target.classList.add('visible');
-        }, idx * 80);
+          // Aciona contadores dentro do elemento visível
+          entry.target.querySelectorAll('.counter').forEach(c => animateCounter(c));
+        }, idx * 120);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   revealEls.forEach(el => observer.observe(el));
+
+  // --- Contador animado ---
+  function animateCounter(el) {
+    if (el.dataset.animated) return;
+    el.dataset.animated = '1';
+    const target = parseInt(el.dataset.target);
+    const duration = 1200;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Counters fora de elementos .reveal (ex: hero tag)
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  // --- Parallax no hero ---
+  const heroCircle = document.querySelector('.hero-deco-circle');
+  const heroMockup = document.querySelector('.hero-mockup');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if (heroCircle) heroCircle.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.25}px))`;
+    if (heroMockup) heroMockup.style.transform = `translateY(${scrolled * 0.1}px)`;
+  }, { passive: true });
+
+  // --- Exit Intent Popup ---
+  (function() {
+    const overlay = document.getElementById('exit-overlay');
+    const closeBtn = document.getElementById('exit-close');
+    let triggered = false;
+
+    function showExit() {
+      if (triggered) return;
+      triggered = true;
+      overlay.style.display = 'flex';
+    }
+
+    // Desktop: mouse sai pelo topo da janela
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY <= 10) showExit();
+    });
+
+    // Mobile: intercepta botão de voltar
+    history.pushState(null, '', location.href);
+    window.addEventListener('popstate', () => {
+      history.pushState(null, '', location.href);
+      showExit();
+    });
+
+    // Mobile: usuário troca de aba ou minimiza o browser
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) showExit();
+    });
+
+    // Fechar
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.style.display = 'none';
+    });
+  })();
+
+  // --- Social Proof Toasts ---
+  (function() {
+    const compras = [
+      { nome:'Maria S.',      cidade:'São Paulo, SP'        },
+      { nome:'João P.',       cidade:'Rio de Janeiro, RJ'   },
+      { nome:'Ana C.',        cidade:'Belo Horizonte, MG'   },
+      { nome:'Lucas M.',      cidade:'Curitiba, PR'         },
+      { nome:'Fernanda O.',   cidade:'Porto Alegre, RS'     },
+      { nome:'Rafael T.',     cidade:'Fortaleza, CE'        },
+      { nome:'Carla D.',      cidade:'Recife, PE'           },
+      { nome:'Bruno L.',      cidade:'Salvador, BA'         },
+      { nome:'Juliana R.',    cidade:'Brasília, DF'         },
+      { nome:'Marcos V.',     cidade:'Manaus, AM'           },
+      { nome:'Patrícia F.',   cidade:'Campinas, SP'         },
+      { nome:'Diego A.',      cidade:'Goiânia, GO'          },
+      { nome:'Camila N.',     cidade:'Florianópolis, SC'    },
+      { nome:'Thiago B.',     cidade:'São Luís, MA'         },
+      { nome:'Larissa K.',    cidade:'Maceió, AL'           },
+      { nome:'Felipe R.',     cidade:'Natal, RN'            },
+      { nome:'Gabriela M.',   cidade:'Teresina, PI'         },
+      { nome:'Eduardo C.',    cidade:'Campo Grande, MS'     },
+      { nome:'Aline S.',      cidade:'João Pessoa, PB'      },
+      { nome:'Vinícius P.',   cidade:'Aracaju, SE'          },
+      { nome:'Beatriz L.',    cidade:'Porto Velho, RO'      },
+      { nome:'Rodrigo H.',    cidade:'Macapá, AP'           },
+      { nome:'Letícia Q.',    cidade:'Boa Vista, RR'        },
+      { nome:'Gustavo F.',    cidade:'Rio Branco, AC'       },
+      { nome:'Isabela T.',    cidade:'Palmas, TO'           },
+      { nome:'Henrique W.',   cidade:'Vitória, ES'          },
+      { nome:'Tatiana M.',    cidade:'Belém, PA'            },
+      { nome:'André J.',      cidade:'Cuiabá, MT'           },
+      { nome:'Vanessa C.',    cidade:'Macaé, RJ'            },
+      { nome:'Leonardo S.',   cidade:'Uberlândia, MG'       },
+      { nome:'Priscila N.',   cidade:'Joinville, SC'        },
+      { nome:'Danilo A.',     cidade:'Londrina, PR'         },
+      { nome:'Renata B.',     cidade:'Santos, SP'           },
+      { nome:'Fábio G.',      cidade:'Ribeirão Preto, SP'   },
+      { nome:'Mônica R.',     cidade:'Sorocaba, SP'         },
+      { nome:'Alexandre P.',  cidade:'São Bernardo, SP'     },
+      { nome:'Cristiane L.',  cidade:'Osasco, SP'           },
+      { nome:'William F.',    cidade:'Guarulhos, SP'        },
+      { nome:'Natália V.',    cidade:'São José, SC'         },
+      { nome:'Leandro O.',    cidade:'Caxias do Sul, RS'    },
+      { nome:'Simone D.',     cidade:'Pelotas, RS'          },
+      { nome:'Maurício H.',   cidade:'Niterói, RJ'          },
+      { nome:'Elaine C.',     cidade:'Duque de Caxias, RJ'  },
+      { nome:'Robson T.',     cidade:'Feira de Santana, BA' },
+      { nome:'Caroline M.',   cidade:'Caruaru, PE'          },
+      { nome:'Sandro K.',     cidade:'Caucaia, CE'          },
+      { nome:'Adriana F.',    cidade:'Aparecida de Goiânia, GO'},
+      { nome:'Sofia A.',      cidade:'Lisboa, PT'           },
+      { nome:'Pedro N.',      cidade:'Porto, PT'            },
+      { nome:'Inês M.',       cidade:'Braga, PT'            },
+    ];
+    const visualizando = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+    const tempos = ['agora mesmo','1 min atrás','2 min atrás','3 min atrás','5 min atrás','7 min atrás'];
+
+    const toast   = document.getElementById('sp-toast');
+    const spIcon  = document.getElementById('sp-icon');
+    const spTitle = document.getElementById('sp-title');
+    const spSub   = document.getElementById('sp-sub');
+
+    let compraIdx = Math.floor(Math.random() * compras.length);
+    let showCount = 0;
+
+    function showToast(icon, title, sub) {
+      spIcon.textContent  = icon;
+      spTitle.textContent = title;
+      spSub.textContent   = sub;
+      toast.style.display = 'flex';
+      toast.style.animation = 'spSlideIn .4s cubic-bezier(.34,1.56,.64,1)';
+      setTimeout(() => {
+        toast.style.animation = 'spSlideOut .4s ease forwards';
+        setTimeout(() => { toast.style.display = 'none'; }, 400);
+      }, 4500);
+    }
+
+    function nextToast() {
+      // Alterna: 2 compras → 1 visualização → repete
+      if (showCount % 3 === 2) {
+        const qtd = visualizando[Math.floor(Math.random() * visualizando.length)];
+        showToast('👀', qtd + ' pessoas estão vendo isso agora', 'nas últimas 24h: 23 visitantes');
+      } else {
+        const c = compras[compraIdx % compras.length];
+        const t = tempos[Math.floor(Math.random() * tempos.length)];
+        showToast('🛒', c.nome + ' acabou de comprar!', c.cidade + ' · ' + t);
+        compraIdx++;
+      }
+      showCount++;
+    }
+
+    // Primeira notificação aparece após 10s, depois a cada 25-40s
+    setTimeout(() => {
+      nextToast();
+      setInterval(nextToast, 30000 + Math.random() * 10000);
+    }, 10000);
+  })();
+
+  // --- Countdown 24h a partir da primeira visita ---
+  const CD_KEY = 'cd_expiry';
+  const CD_DURATION = 2 * 60 * 60 * 1000; // 2 horas em ms
+  let expiry = parseInt(localStorage.getItem(CD_KEY) || '0');
+  if (!expiry || expiry < Date.now()) {
+    expiry = Date.now() + CD_DURATION;
+    localStorage.setItem(CD_KEY, expiry);
+  }
+  function updateCountdown() {
+    const diff = Math.max(0, expiry - Date.now());
+    const h = String(Math.floor(diff / 3600000)).padStart(2,'0');
+    const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    const s = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+    const cdH = document.getElementById('cd-h');
+    const cdM = document.getElementById('cd-m');
+    const cdS = document.getElementById('cd-s');
+    if (cdH) cdH.textContent = h;
+    if (cdM) cdM.textContent = m;
+    if (cdS) cdS.textContent = s;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 
 <!-- ============================================================
@@ -1258,6 +1863,10 @@
     if (priceNow) priceNow.textContent = priceNow.dataset.eur;
     const vatNote = document.querySelector('.vat-note');
     if (vatNote) vatNote.style.display = 'block';
+    const mathNote = document.querySelector('.math-note');
+    if (mathNote) mathNote.textContent = mathNote.dataset.eur;
+    const anchor = document.querySelector('.anchor-dynamic');
+    if (anchor) anchor.innerHTML = anchor.dataset.eur;
   }
 
   function applyUsdPrices() {
@@ -1266,6 +1875,10 @@
     const priceNow = document.querySelector('.price-now');
     if (priceWas) priceWas.textContent = priceWas.dataset.usd;
     if (priceNow) priceNow.textContent = priceNow.dataset.usd;
+    const mathNote = document.querySelector('.math-note');
+    if (mathNote) mathNote.textContent = mathNote.dataset.usd;
+    const anchor = document.querySelector('.anchor-dynamic');
+    if (anchor) anchor.innerHTML = anchor.dataset.usd;
   }
 
   function resolveAndShow(currency) {
